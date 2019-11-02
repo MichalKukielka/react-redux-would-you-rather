@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
+import React, { Component, Fragment } from 'react'
+import PropTypes from 'prop-types'
+import { Redirect } from 'react-router-dom'
 import { 
     Header,
     Button
-} from 'semantic-ui-react';
+} from 'semantic-ui-react'
 
 import { colors } from '../utils/helpers'
 
@@ -13,7 +13,6 @@ export class QuestionTeaser extends Component {
 static propTypes = {
     question: PropTypes.object.isRequired,
     unanswered: PropTypes.bool.isRequired,
-    color: PropTypes.string
   };
 
   state = {
@@ -28,12 +27,12 @@ static propTypes = {
 
   render() {
 
-    const { question, unanswered, color } = this.props;
-    const buttonColor = unanswered === true ? colors
-
+    const { question, unanswered } = this.props
+    const buttonColor = unanswered === true ? colors.green : colors.blue
+    const buttonContent = unanswered === true ? 'Answer Pool' : 'Results'
 
     if (this.state.viewPoll === true) {
-      return <Redirect push to={`/questions/${question.id}`} />;
+      return <Redirect push to={`/questions/${question.id}`} />
     }
     return (
       <Fragment>
@@ -46,11 +45,11 @@ static propTypes = {
           or...
         </p>
         <Button
-          color={color}
+          color={buttonColor.name}
           size="tiny"
           fluid
           onClick={this.handleClick}
-          content={unanswered === true ? 'Answer Poll' : 'Results'}
+          content={buttonContent}
         />
       </Fragment>
     );
