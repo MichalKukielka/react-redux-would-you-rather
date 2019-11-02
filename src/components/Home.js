@@ -3,16 +3,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Tab } from 'semantic-ui-react';
 import UserCard from './UserCard';
-import QuestionTeaser from './QuestionTeaser';
 
 export class Home extends Component {
-
   static propTypes = {
     userQuestionData: PropTypes.object.isRequired
   };
-
   render() {
     const { userQuestionData } = this.props;
+
     return <Tab panes={panes({ userQuestionData })} className="tab" />;
   }
 }
@@ -54,11 +52,14 @@ const panes = props => {
 function mapStateToProps({ authUser, users, questions }) {
   const answeredIds = Object.keys(users[authUser].answers);
   const answered = Object.values(questions)
-    .filter(question => answeredIds.includes(question.id))
-    .sort((a, b) => b.timestamp - a.timestamp);
-  const unanswered = Object.values(questions)
     .filter(question => !answeredIds.includes(question.id))
     .sort((a, b) => b.timestamp - a.timestamp);
+  const unanswered = Object.values(questions)
+    .filter(question => answeredIds.includes(question.id))
+    .sort((a, b) => b.timestamp - a.timestamp);
+  // console.log('answeredIds', answeredIds);
+  // console.log('answeredQuestions', answeredQuestions);
+  // console.log('unansweredQuestions', unansweredQuestions);
 
   return {
     userQuestionData: {
