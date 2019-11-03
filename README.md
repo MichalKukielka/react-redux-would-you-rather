@@ -1,5 +1,6 @@
 # Would You Rather Project
 
+This is my second project from Udacity React Nanodegree. Application functionalities focus on the experience with the game 'Would you rather?'. This project shows my understanding of how to use the redux library in state management in React projects.
 
 ## Instalation
 
