@@ -9,6 +9,7 @@ import Home from './Home';
 import UserCard from './UserCard';
 import NewPoll from './NewPoll';
 import Leaderboard from './Leaderboard';
+import NotFound from './404';
 
 class App extends Component {
   componentDidMount() {
@@ -36,6 +37,7 @@ class App extends Component {
                   <Route path="/questions/:question_id" component={UserCard} />
                   <Route path="/add" component={NewPoll} />
                   <Route path="/leaderboard" component={Leaderboard} />
+                  <Route component={NotFound} />
                 </Switch>
               </ContentGrid>
             </Fragment>
@@ -58,7 +60,7 @@ function mapStateToProps({ authUser }) {
   return {
     authUser
   };
-}
+};
 
 export default connect(
   mapStateToProps,
